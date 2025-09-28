@@ -4,6 +4,7 @@ const Field = ({
   title,
   value,
   valuClassName,
+  className,
 }: {
   title: string | ReactNode;
   value: string | ReactNode;
@@ -11,14 +12,14 @@ const Field = ({
   valuClassName?: string;
 }) => {
   return (
-    <div className="flex items-center gap-3">
-      <h5 className="text-grey-700 w-4/12 !text-xs whitespace-nowrap">
+    <div className={`flex items-center gap-3 ${className}`}>
+      <h5 className="text-gray-40 w-4/12 !text-xs whitespace-nowrap">
         {title}
       </h5>
       <div className="flex-1">
         {typeof value === "string" ? (
           <h5
-            className={`text-grey-900 text-sm whitespace-break-spaces ${valuClassName}`}
+            className={`text-sm whitespace-break-spaces text-white ${valuClassName}`}
           >
             {value}
           </h5>

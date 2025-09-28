@@ -3,86 +3,51 @@ import Image, { StaticImageData } from "next/image";
 type FileImageProps = {
   url: string | StaticImageData;
   displayName: string;
-  initials: string;
-  subText?: string;
   className?: string;
-  subtextClassName?: string;
+  titleClassName?: string;
+  subtext?: string;
+  showTitle?: boolean;
 };
 
 export const UserAvatar = ({
   url,
-  initials,
   displayName,
-  subText,
+  subtext,
+  titleClassName,
   className,
-  subtextClassName,
+  showTitle,
 }: FileImageProps) => {
   return (
-    <article className="flex w-full items-center gap-2.5">
+    <article className={`flex items-center gap-2.5 ${className}`}>
       {url ? (
-        <div>
-          <figure className="relative size-8 overflow-hidden rounded-full">
-            <Image
-              src={url}
-              alt="image"
-              fill
-              sizes="100%"
-              className="!h-full !w-full object-cover"
-            />
-          </figure>
-        </div>
+        <figure className="relative size-12 overflow-hidden rounded-full">
+          <Image
+            src={url}
+            alt="image"
+            fill
+            sizes="100%"
+            className="!h-full !w-full object-cover"
+          />
+        </figure>
       ) : (
-        <UserInitials initials={initials} />
+        <div
+          className={`text-primary grid size-12 place-items-center rounded-full bg-white`}
+        >
+          <span className={`text-base font-bold uppercase`}>
+            {displayName?.slice(0, 2) || ""}
+          </span>
+        </div>
       )}
 
-      <div className="flex-1">
-        <p className={`text-grey-900 !font-medium ${className} `}>
-          {displayName}
-        </p>
-        <small className={`text-grey-500 !font-medium ${subtextClassName}`}>
-          {subText}
-        </small>
-      </div>
+      {showTitle && (
+        <div className="flex flex-1 flex-col">
+          <h5 className={`${titleClassName} text-base font-semibold`}>
+            {displayName}
+          </h5>
+
+          {subtext && <small className="text-gray-40 text-xs">{subtext}</small>}
+        </div>
+      )}
     </article>
-  );
-};
-
-export const UserInitials = ({
-  bg,
-  showName,
-  initials,
-  displayName,
-  className,
-  titleClassName,
-  displayClassName,
-}: {
-  showName?: boolean;
-  bg?: string;
-  initials?: string;
-  displayName?: string;
-  className?: string;
-  titleClassName?: string;
-  displayClassName?: string;
-}) => {
-  return (
-    <div className="flex items-center gap-2">
-      <div
-        className={`${className} text-warning-200 grid size-8 place-items-center rounded-full ${bg ? bg : "bg-warning-50"}`}
-      >
-        <span
-          className={`text-EbonyClay text-sm font-bold uppercase ${titleClassName}`}
-        >
-          {initials ? initials?.slice(0, 2) : displayName?.slice(0, 2) || ""}
-        </span>
-      </div>
-      {showName && (
-        <h4
-          className={`text-grey-900 !text-sm !font-medium ${displayClassName}`}
-        >
-          {" "}
-          {displayName}
-        </h4>
-      )}
-    </div>
   );
 };

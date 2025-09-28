@@ -1,14 +1,18 @@
 import React from "react";
 import MarketWrapper from "./marketWrapper";
 import { TableWrapper } from "./table/tableWrapper";
-import { SupplyTypes } from "@/types/martkes";
+import { ArtCollection } from "@/types/martkes";
 
-export default function RenderMarkets({ data }: { data: SupplyTypes[] }) {
+export default function RenderMarkets({
+  data,
+  // home,
+}: {
+  home?: boolean;
+  data: ArtCollection[];
+}) {
   return (
     <MarketWrapper>
-      <section className="py-5">
-        <TableWrapper data={data} />
-      </section>
+      <TableWrapper data={data} />
     </MarketWrapper>
   );
 }

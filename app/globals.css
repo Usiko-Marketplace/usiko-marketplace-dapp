@@ -26,9 +26,14 @@
   --color-gray: #c1c1c8;
   --color-gray-10: #c1c1c8e3;
   --color-gray-20: #f3f3f3;
-  --color-gray-10: #c1c1c8e3;
+  --color-gray-30: #adadb6;
+  --color-gray-40: #ceced5;
+  --color-gray-400: #444444;
+  --color-gray-500: #33333b;
+  --color-gray-600: #24242a;
   --color-success-25: #00d1b21c;
   --color-success-50: #00d1b2;
+  --color-success-100: #2ad100;
   --color-success-200: #6ce9a6;
   --color-success-300: #34c759;
   --color-error: #e01a00;

@@ -48,14 +48,15 @@ export default function TableComponent<T extends Record<string, any>>(
     >
       {title && <TableCaption className="sr-only">{title}</TableCaption>}
 
-      <TableHeader className="">
+      <TableHeader className="border-b-[3px] border-gray-500">
         <TableRow>
           {columns.map((column, index) => (
             <TableHead
               key={index}
               className={cn(
-                "text-grey-500 text-sm font-medium whitespace-nowrap uppercase",
+                "text-gray-10 !border-0 !py-8 !text-end text-xs font-medium whitespace-nowrap uppercase",
                 column?.noMobile ? "hidden lg:table-cell" : "",
+                column?.headerClassName,
               )}
             >
               {column.title}
@@ -69,15 +70,16 @@ export default function TableComponent<T extends Record<string, any>>(
           <TableRow
             key={row.id || rowIndex}
             onClick={() => handleRowClick && handleRowClick(row)}
-            className="hover:bg-grey-25"
+            className="hover:!bg-white/1"
           >
             {columns.map((column) => {
               return (
                 <TableCell
                   key={`${rowIndex}-${column.key.toString()}`}
                   className={cn(
-                    "text-grey-800 py-5 font-medium whitespace-nowrap",
+                    "py-5 text-end font-medium whitespace-nowrap",
                     column?.noMobile ? "hidden lg:table-cell" : "",
+                    column.columnClassName,
                     handleRowClick ? "cursor-pointer" : "",
                   )}
                 >

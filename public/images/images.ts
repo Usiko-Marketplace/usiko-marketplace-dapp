@@ -9,16 +9,20 @@ import learn2 from "@/public/images/learn2.png";
 import learn3 from "@/public/images/learn3.png";
 import learn4 from "@/public/images/learn4.png";
 import learn5 from "@/public/images/learn5.png";
-import noImagepng from "@/public/images/noImagepng.png";
+import noImage from "@/public/images/noImagepng.png";
 import product1 from "@/public/images/product1.png";
 import product2 from "@/public/images/product2.png";
 import product3 from "@/public/images/product3.png";
 import theHornsNFT1 from "@/public/images/theHornsNFT1.jpg";
 import theHornsNFT2 from "@/public/images/theHornsNFT2.jpg";
 import theHornsNFT3 from "@/public/images/theHornsNFT3.jpg";
+import avarta1 from "@/public/images/authorAvatar.png";
+import avarta2 from "@/public/images/authorAvatar1.png";
 
 export const allImages = {
   metaMask,
+  avarta1,
+  avarta2,
   danNFT1,
   danNFT2,
   danNFT3,
@@ -29,7 +33,7 @@ export const allImages = {
   learn3,
   learn4,
   learn5,
-  noImagepng,
+  noImage,
   product1,
   product2,
   product3,

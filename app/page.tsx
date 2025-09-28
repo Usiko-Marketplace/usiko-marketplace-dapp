@@ -1,8 +1,12 @@
+import { RenderExplore } from "@/components/main/explore/renderExplore";
+import { LearningSlider } from "@/components/main/learningSlider";
+import RenderMarkets from "@/components/main/markets/renderMarkets";
 import Button from "@/components/ui/button";
+import { artsData, learningHubData } from "@/utils/constant";
 
 export default async function Home() {
   return (
-    <main className="overflow-x-hidden pt-[var(--main-header-height)]">
+    <main className="overflow-x-hidden bg-black pt-[var(--main-header-height)]">
       <section className="flex min-h-screen flex-col items-center justify-center gap-10 bg-[url('/images/heroBg.png')] bg-cover bg-center bg-no-repeat">
         <article
           data-aos="fade-down"
@@ -23,6 +27,36 @@ export default async function Home() {
           <Button className="alt-btn grow">Explore</Button>
           <Button className="pry-btn grow">Mint NFT</Button>
         </article>
+      </section>
+
+      <RenderExplore />
+
+      <section className="container !space-y-10 py-20">
+        <hgroup
+          data-aos="fade-down"
+          data-aos-duration="1500"
+          className="!space-y-3 text-center"
+        >
+          <h3>Marketplace</h3>
+          <h5>
+            Create Buy and sell NFTs while supporting authentic African
+            heritage.
+          </h5>
+        </hgroup>
+
+        <RenderMarkets data={artsData} />
+      </section>
+      <section className="container !space-y-10 py-20">
+        <hgroup
+          data-aos="fade-down"
+          data-aos-duration="1500"
+          className="!space-y-3 text-center"
+        >
+          <h3>Learning Hub</h3>
+          <h5>Learn about NFTs, Web3 and more</h5>
+        </hgroup>
+
+        <LearningSlider data={learningHubData} />
       </section>
     </main>
   );

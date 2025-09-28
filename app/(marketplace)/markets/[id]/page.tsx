@@ -10,6 +10,8 @@ export default async function page({
   const { id } = await params;
   const pm = await searchParams;
 
+  console.log("first", pm, id);
+
   return (
     <main className="mt-[var(--main-header-height)] flex flex-col lg:flex-row">
       coming...

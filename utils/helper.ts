@@ -24,3 +24,7 @@ export const formatNumInThousands = (number: number | string) => {
 
   return formattedVal + "." + Number(decimalPart);
 };
+
+export const formatNumbers = (val: number) => {
+  return val?.toLocaleString("en-US");
+};

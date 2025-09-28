@@ -1,51 +1,49 @@
 import { StaticImageData } from "next/image";
 
-export type MarketInstrument = {
-  id?: string;
-  gainers: boolean;
-  symbol: string;
-  ticker: string;
-  company: string;
-  sector?: string;
-  kycLevel?: string;
-  bandPct?: number;
-  dividends?: number;
-  lastPrice: number;
-  askPrice?: number;
-  bidPrice?: number;
-  change24hPct: number;
-  changes?: number[];
-  logo?: string | StaticImageData | null;
-};
-
-export type BorrowTypes = {
-  amounts: number;
-  units: number;
-  debts: number;
-  ltv: number;
-  hf: number;
-};
-
-export type StockHoldingTypes = {
-  amounts: number;
-  units: number;
-  value: number;
-  ltv: number;
-  hf: number;
-  profitLosss: number;
-  changes?: number[];
-};
-
-export type SupplyHistoryTypes = {
-  date: strring;
-  type: string;
-  amount: number;
-};
-
 export type SupplyTypes = {
   id: string;
   date: string;
   asset: string;
   supplied: number;
   accrued: number;
+};
+
+// NFT Details Type
+export type NFTDetails = {
+  contractAddress: string;
+  tokenID: string;
+  tokenStandard: string;
+  chain: string;
+};
+
+// Individual NFT Type
+export type NFT = {
+  id: string;
+  name: string;
+  floor: number;
+  list: number;
+  sale: number;
+  artwork: StaticImageData | null;
+  details: NFTDetails;
+  priceHistory: number[];
+  about: string;
+};
+
+// Art Collection Type
+export type ArtCollection = {
+  id: string;
+  authorName: string;
+  authorAvarta: StaticImageData | null;
+  supply: number;
+  availableItems: number;
+  about: string;
+  floor: number;
+  oneDayvolumeChange: string;
+  topOffer: number;
+  topVolume: number;
+  owners: number;
+  artwork: StaticImageData;
+  artworkName: string;
+  priceHistory: number[];
+  nfts: NFT[];
 };
