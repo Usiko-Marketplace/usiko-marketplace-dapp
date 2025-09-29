@@ -6,15 +6,15 @@ export const navRoutes = [
 
   {
     name: "Live Auctions",
-    path: "/live-auctions",
+    path: "#",
   },
   {
     name: "Community",
-    path: "/community",
+    path: "#",
   },
   {
-    name: "Mint Store",
-    path: "/mint-store",
+    name: "Mint NFT",
+    path: "#",
   },
 ];
 
@@ -30,15 +30,15 @@ export const productRoutes = [
 
   {
     name: "Live Auctions",
-    path: "/live-auctions",
+    path: "#",
   },
   {
     name: "Community",
-    path: "/community",
+    path: "#",
   },
   {
-    name: "Mint Store",
-    path: "/mint-store",
+    name: "Mint NFT",
+    path: "#",
   },
 ];
 
