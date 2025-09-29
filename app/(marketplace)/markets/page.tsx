@@ -1,7 +1,14 @@
 import RenderMarkets from "@/components/main/markets/renderMarkets";
+import { SearchParams } from "@/types/globals";
 import { artsData } from "@/utils/constant";
 
-export default async function Home() {
+export default async function page({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const p = await searchParams;
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-black py-20">
       <section className="container !space-y-10 pt-10">
@@ -17,7 +24,7 @@ export default async function Home() {
           </h4>
         </hgroup>
 
-        <RenderMarkets data={artsData} />
+        <RenderMarkets data={artsData} params={p} path="/markets" />
       </section>
     </main>
   );

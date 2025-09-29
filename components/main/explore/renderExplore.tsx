@@ -4,10 +4,9 @@ import { ArtCollection } from "@/types/martkes";
 import { formatNumbers } from "@/utils/helper";
 import Image from "next/image";
 import React from "react";
-import { Star } from "../markets/table/star";
 import Field from "@/components/ui/field";
 import { artsData } from "@/utils/constant";
-import { DailyChange } from "../markets/table/dailyChange";
+import { DailyChange, Star } from "../markets/table/tableComps";
 
 export const RenderExplore = () => {
   return (

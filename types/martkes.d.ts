@@ -1,13 +1,5 @@
 import { StaticImageData } from "next/image";
 
-export type SupplyTypes = {
-  id: string;
-  date: string;
-  asset: string;
-  supplied: number;
-  accrued: number;
-};
-
 // NFT Details Type
 export type NFTDetails = {
   contractAddress: string;
@@ -40,7 +32,7 @@ export type ArtCollection = {
   floor: number;
   oneDayvolumeChange: string;
   topOffer: number;
-  topVolume: number;
+  totalVolume: number;
   owners: number;
   artwork: StaticImageData;
   artworkName: string;

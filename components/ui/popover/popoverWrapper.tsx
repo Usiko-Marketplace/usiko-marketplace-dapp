@@ -34,7 +34,7 @@ const PopoverWrapper = ({
           >
             <div className="flex-1">{selected}</div>
             <span className="w-">
-              {icon ? icon : <FaChevronDown className="text-grey-400" />}
+              {icon ? icon : <FaChevronDown className="text-gray" />}
             </span>
           </div>
         ) : (
@@ -46,7 +46,7 @@ const PopoverWrapper = ({
 
       <PopoverContent
         className={cn(
-          "popover-content-width-same-as-its-trigger mt-1 w-full bg-white",
+          "popover-content-width-same-as-its-trigger mt-1 w-full bg-gray-200",
           className,
         )}
         align={align}
