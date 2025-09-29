@@ -4,10 +4,10 @@ import { ArtCollection } from "@/types/martkes";
 import { formatNumbers } from "@/utils/helper";
 import Image from "next/image";
 import React from "react";
-import { Star } from "../markets/table/star";
 import Field from "@/components/ui/field";
 import { artsData } from "@/utils/constant";
-import { DailyChange } from "../markets/table/dailyChange";
+import { DailyChange, Star } from "../markets/table/tableComps";
+import Link from "next/link";
 
 export const RenderExplore = () => {
   return (
@@ -44,7 +44,8 @@ export const ExploreCard = ({
   data: ArtCollection;
 }) => {
   return (
-    <li
+    <Link
+      href={`/markets/${id}?artName=${artworkName}`}
       data-aos="zoom-in"
       className="relative h-[500px] overflow-hidden rounded-2xl p-3"
     >
@@ -86,6 +87,6 @@ export const ExploreCard = ({
           />
         </div>
       </article>
-    </li>
+    </Link>
   );
 };

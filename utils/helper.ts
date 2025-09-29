@@ -28,3 +28,7 @@ export const formatNumInThousands = (number: number | string) => {
 export const formatNumbers = (val: number) => {
   return val?.toLocaleString("en-US");
 };
+
+export const removeSpaces = (str: string) => {
+  return str.replace(/\s+/g, "-").replace(/\//g, "and");
+};

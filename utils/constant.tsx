@@ -1,7 +1,9 @@
 import { SparkLineChart } from "@/components/chart/sparklineChart";
-import { MarketPrice } from "@/components/main/markets/table/marketPrice";
-import { Star } from "@/components/main/markets/table/star";
-import { DailyChange } from "@/components/main/markets/table/dailyChange";
+import {
+  DailyChange,
+  MarketPrice,
+  Star,
+} from "@/components/main/markets/table/tableComps";
 import { Column } from "@/components/ui/tableComponent/tableComponent";
 import { UserAvatar } from "@/components/ui/UserAvatar";
 import { allImages } from "@/public/images/images";
@@ -20,14 +22,14 @@ export const artsData: ArtCollection[] = [
     floor: 5.67,
     oneDayvolumeChange: "+12.7%",
     topOffer: 4.37,
-    topVolume: 524.67,
+    totalVolume: 524.67,
     artwork: allImages.product1,
     artworkName: "Danxomɛ Codex",
     priceHistory: [1.2, 13, 5, 26, 12],
 
     nfts: [
       {
-        id: "#1024",
+        id: "1024",
         name: "Agojie: Shields of Abomey",
         floor: 24.12,
         list: 22.1,
@@ -44,7 +46,7 @@ export const artsData: ArtCollection[] = [
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
       {
-        id: "#1025",
+        id: "1025",
         name: "Fa: The Diviner’s Chain",
         floor: 30.75,
         list: 28.5,
@@ -61,7 +63,7 @@ export const artsData: ArtCollection[] = [
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
       {
-        id: "#1026",
+        id: "1026",
         name: "Vodun: The Moving Elements",
         floor: 15.99,
         list: 14.75,
@@ -91,14 +93,14 @@ export const artsData: ArtCollection[] = [
     floor: 5.67,
     oneDayvolumeChange: "-2.7%",
     topOffer: 4.37,
-    topVolume: 524.67,
+    totalVolume: 524.67,
     artwork: allImages.product2,
     artworkName: "The Horns Codex: Shaka’s Age",
     priceHistory: [1.2, 13, 5, 26, 12],
 
     nfts: [
       {
-        id: "#1024",
+        id: "1024",
         name: "Agojie: Shields of Abomey",
         floor: 24.12,
         list: 22.1,
@@ -115,7 +117,7 @@ export const artsData: ArtCollection[] = [
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
       {
-        id: "#1025",
+        id: "1025",
         name: "Fa: The Diviner’s Chain",
         floor: 30.75,
         list: 28.5,
@@ -132,7 +134,7 @@ export const artsData: ArtCollection[] = [
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
       {
-        id: "#1026",
+        id: "1026",
         name: "Vodun: The Moving Elements",
         floor: 15.99,
         list: 14.75,
@@ -162,14 +164,14 @@ export const artsData: ArtCollection[] = [
     floor: 5.67,
     oneDayvolumeChange: "+35.7%",
     topOffer: 4.37,
-    topVolume: 524.67,
+    totalVolume: 524.67,
     artwork: allImages.product3,
     artworkName: "IGUN CODEX: Court of Benin",
     priceHistory: [1.2, 13, 5, 26, 12],
 
     nfts: [
       {
-        id: "#1024",
+        id: "1024",
         name: "Agojie: Shields of Abomey",
         floor: 24.12,
         list: 22.1,
@@ -186,7 +188,7 @@ export const artsData: ArtCollection[] = [
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
       {
-        id: "#1025",
+        id: "1025",
         name: "Fa: The Diviner’s Chain",
         floor: 30.75,
         list: 28.5,
@@ -203,7 +205,7 @@ export const artsData: ArtCollection[] = [
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
       {
-        id: "#1026",
+        id: "1026",
         name: "Vodun: The Moving Elements",
         floor: 15.99,
         list: 14.75,
@@ -256,9 +258,9 @@ export const marketColData: Column<ArtCollection>[] = [
   },
   {
     title: "VOLUME",
-    key: "topVolume",
-    render: (_, { topVolume }) => (
-      <MarketPrice price={topVolume} className="justify-end" />
+    key: "totalVolume",
+    render: (_, { totalVolume }) => (
+      <MarketPrice price={totalVolume} className="justify-end" />
     ),
   },
   {
@@ -286,21 +288,26 @@ export const learningHubData = [
   {
     title: "What is an NFT?",
     imageUrl: allImages.learn1,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/editor-",
   },
   {
     title: "How to Buy an NFT",
     imageUrl: allImages.learn2,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/markdown",
   },
   {
     title: "How to create a Collection",
     imageUrl: allImages.learn3,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/images-and-media",
   },
   {
     title: "Understanding Usiko Ethos",
     imageUrl: allImages.learn4,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/interactive-blocks",
   },
   {
     title: "What is Hedera DLT?",
     imageUrl: allImages.learn5,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/integrations",
   },
 ];

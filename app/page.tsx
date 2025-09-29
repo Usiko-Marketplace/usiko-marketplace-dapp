@@ -2,9 +2,15 @@ import { RenderExplore } from "@/components/main/explore/renderExplore";
 import { LearningSlider } from "@/components/main/learningSlider";
 import RenderMarkets from "@/components/main/markets/renderMarkets";
 import Button from "@/components/ui/button";
+import { SearchParams } from "@/types/globals";
 import { artsData, learningHubData } from "@/utils/constant";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const p = await searchParams;
   return (
     <main className="overflow-x-hidden bg-black pt-[var(--main-header-height)]">
       <section className="flex min-h-screen flex-col items-center justify-center gap-10 bg-[url('/images/heroBg.png')] bg-cover bg-center bg-no-repeat">
@@ -31,11 +37,11 @@ export default async function Home() {
 
       <RenderExplore />
 
-      <section className="container !space-y-10 py-20">
+      <section className="container py-20">
         <hgroup
           data-aos="fade-down"
           data-aos-duration="1500"
-          className="!space-y-3 text-center"
+          className="mb-10 !space-y-3 text-center"
         >
           <h3>Marketplace</h3>
           <h5>
@@ -44,7 +50,7 @@ export default async function Home() {
           </h5>
         </hgroup>
 
-        <RenderMarkets data={artsData} />
+        <RenderMarkets data={artsData} params={p} path="/" />
       </section>
       <section className="container !space-y-10 py-20">
         <hgroup

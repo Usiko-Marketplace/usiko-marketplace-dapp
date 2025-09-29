@@ -1,11 +1,12 @@
 import Image, { StaticImageData } from "next/image";
+import { ReactNode } from "react";
 
 type FileImageProps = {
   url: string | StaticImageData;
   displayName: string;
   className?: string;
   titleClassName?: string;
-  subtext?: string;
+  subtext?: ReactNode;
   showTitle?: boolean;
 };
 
@@ -45,7 +46,7 @@ export const UserAvatar = ({
             {displayName}
           </h5>
 
-          {subtext && <small className="text-gray-40 text-xs">{subtext}</small>}
+          {subtext && <>{subtext}</>}
         </div>
       )}
     </article>

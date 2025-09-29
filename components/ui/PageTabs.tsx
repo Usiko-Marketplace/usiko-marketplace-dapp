@@ -12,7 +12,7 @@ export type PageTabsParams = {
   tabDatas: {
     id: string;
     title: string;
-    totalCount?: number;
+    icon?: ReactNode;
   }[];
   className?: string;
   containerClassName?: string;
@@ -43,13 +43,14 @@ const PageTabs: FC<PageTabsParams> = ({
         <ul
           className={`${className} flex flex-1 justify-normal gap-4 overflow-x-auto whitespace-nowrap`}
         >
-          {tabDatas?.map(({ id, title }) => (
+          {tabDatas?.map(({ id, title, icon }) => (
             <Link
               href={`${path}${path?.includes("?") ? "&" : "?"}tab=${id}`}
               key={id}
-              className={` ${activeTab === id ? activeClass : notActiveClass} group hover:text-primary gap-2 px-6 py-2 transition-all duration-300`}
+              className={` ${activeTab === id ? activeClass : notActiveClass} ${icon ? "flex items-center gap-1" : ""} group hover:!bg-primary gap-2 px-6 py-2 transition-all duration-300`}
             >
-              {title}
+              <span>{icon || ""}</span>
+              <span>{title}</span>
             </Link>
           ))}
         </ul>

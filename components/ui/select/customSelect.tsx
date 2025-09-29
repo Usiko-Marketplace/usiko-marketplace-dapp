@@ -43,7 +43,7 @@ export const CustomSelect = ({
       {label && <h5 className="text-grey-700 !mb-2 text-sm">{label}</h5>}
       <PopoverWrapper
         selected={
-          <span className="flex items-center gap-2">
+          <span className="text-gray flex items-center gap-2">
             {selectedOption?.icon ? (
               <span className="text-lg">{selectedOption.icon}</span>
             ) : null}
@@ -56,7 +56,7 @@ export const CustomSelect = ({
       >
         <ul
           className={cn(
-            "divide-grey-25 w-full divide-y overflow-hidden",
+            "w-full divide-y divide-gray-400 overflow-hidden",
             contentsCassName,
           )}
         >
@@ -67,7 +67,7 @@ export const CustomSelect = ({
               return (
                 <li
                   key={idx}
-                  className={`text-grey-700 hover:bg-grey-25 my-1 flex cursor-pointer items-center gap-2 px-3 py-2`}
+                  className={`text-gray hover:bg-grey-25 my-1 flex cursor-pointer items-center gap-2 px-3 py-2`}
                   onClick={() => {
                     onChange(item);
                     setShow(false);
