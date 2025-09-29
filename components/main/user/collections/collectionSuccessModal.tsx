@@ -30,10 +30,10 @@ export const CollectionSuccessModal = () => {
 
             <div className="flex flex-col gap-3">
               <Button type="button" className="outline-btn w-full !text-white">
-                Start Minting
+                View on Hashscan
               </Button>
               <Button type="submit" className="pry-btn w-full">
-                View on Hashscan
+                Start Minting
               </Button>
             </div>
           </article>
