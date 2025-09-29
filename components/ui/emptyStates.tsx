@@ -1,4 +1,5 @@
-import { NotFound } from "@/public/svgs";
+import { allImages } from "@/public/images/images";
+import Image from "next/image";
 import React, { ReactNode } from "react";
 
 const EmptyState = ({
@@ -13,10 +14,10 @@ const EmptyState = ({
 }) => {
   return (
     <section
-      className={` ${className} flex flex-col items-center justify-center gap-5`}
+      className={` ${className} flex min-h-[60vh] flex-col items-center justify-center gap-5`}
     >
-      <div className="flex w-8/12 flex-col items-center justify-center">
-        <NotFound />
+      <div className="flex w-3/12 flex-col items-center justify-center">
+        <Image src={allImages.notfound} alt="" />
       </div>
 
       <div className="w-full text-center">

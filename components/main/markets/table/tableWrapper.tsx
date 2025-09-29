@@ -4,7 +4,6 @@ import React from "react";
 import { ArtCollection } from "@/types/martkes";
 import { marketColData } from "@/utils/constant";
 import { useRouter } from "next/navigation";
-import { removeSpaces } from "@/utils/helper";
 
 export const TableWrapper = ({ data }: { data: ArtCollection[] }) => {
   const { push } = useRouter();

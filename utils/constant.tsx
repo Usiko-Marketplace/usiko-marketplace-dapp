@@ -288,21 +288,26 @@ export const learningHubData = [
   {
     title: "What is an NFT?",
     imageUrl: allImages.learn1,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/editor-",
   },
   {
     title: "How to Buy an NFT",
     imageUrl: allImages.learn2,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/markdown",
   },
   {
     title: "How to create a Collection",
     imageUrl: allImages.learn3,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/images-and-media",
   },
   {
     title: "Understanding Usiko Ethos",
     imageUrl: allImages.learn4,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/interactive-blocks",
   },
   {
     title: "What is Hedera DLT?",
     imageUrl: allImages.learn5,
+    path: "https://app.gitbook.com/o/unUYsn64l715p3DeXMrA/s/4GWfNKxnrLeVMN2cSBfg/learn-with-usiko/integrations",
   },
 ];

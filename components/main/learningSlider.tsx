@@ -10,6 +10,7 @@ export const LearningSlider = ({
   data: {
     title?: string | ReactNode;
     imageUrl?: string | StaticImageData;
+    path: string;
   }[];
 }) => {
   const sliderRef = useRef<any>(null);
@@ -51,9 +52,14 @@ export const LearningSlider = ({
         modules={[Autoplay, Navigation]}
         className="mySwiper"
       >
-        {data?.map(({ title, imageUrl }, idx) => (
+        {data?.map(({ title, imageUrl, path }, idx) => (
           <SwiperSlide key={idx}>
-            <section className="relative overflow-hidden rounded-2xl">
+            <a
+              href={path}
+              target="_blank"
+              rel="no referrer"
+              className="relative overflow-hidden rounded-2xl"
+            >
               <figure className="relative h-[310px] overflow-hidden">
                 <Image
                   src={imageUrl as string}
@@ -67,7 +73,7 @@ export const LearningSlider = ({
               <article className="absolute bottom-0 flex h-16 w-full flex-col justify-center bg-gray-400/60 px-6 py-4 text-white">
                 <h5 className="text-lg font-semibold">{title}</h5>
               </article>
-            </section>
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>

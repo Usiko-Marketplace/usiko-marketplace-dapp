@@ -1,8 +1,7 @@
 import { useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ApiResponse } from "@/types/auths";
 
-export type UsePaginateData = ApiResponse & {
+export type UsePaginateData = {
   total: number;
   limit: number;
   page: number;

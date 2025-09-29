@@ -40,7 +40,7 @@ export default function RenderNFTS({ artId }: { artId: string }) {
         {matched?.nfts?.map(({ id, name, artwork, sale }) => (
           <li key={id} className="overflow-hidden rounded-2xl">
             <Link
-              href={`/markets/${removeSpaces(artId)}/nfts/${id}`}
+              href={`/markets/${removeSpaces(artId)}/nfts/${id}?nftName=${name}`}
               className="flex flex-col"
               data-aos="zoom-in"
             >

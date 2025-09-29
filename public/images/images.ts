@@ -18,9 +18,11 @@ import theHornsNFT2 from "@/public/images/theHornsNFT2.jpg";
 import theHornsNFT3 from "@/public/images/theHornsNFT3.jpg";
 import avarta1 from "@/public/images/authorAvatar.png";
 import avarta2 from "@/public/images/authorAvatar1.png";
+import notfound from "@/public/images/notfound.png";
 
 export const allImages = {
   metaMask,
+  notfound,
   avarta1,
   avarta2,
   danNFT1,

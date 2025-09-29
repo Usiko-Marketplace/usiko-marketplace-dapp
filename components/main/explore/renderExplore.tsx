@@ -7,6 +7,7 @@ import React from "react";
 import Field from "@/components/ui/field";
 import { artsData } from "@/utils/constant";
 import { DailyChange, Star } from "../markets/table/tableComps";
+import Link from "next/link";
 
 export const RenderExplore = () => {
   return (
@@ -43,7 +44,8 @@ export const ExploreCard = ({
   data: ArtCollection;
 }) => {
   return (
-    <li
+    <Link
+      href={`/markets/${id}?artName=${artworkName}`}
       data-aos="zoom-in"
       className="relative h-[500px] overflow-hidden rounded-2xl p-3"
     >
@@ -85,6 +87,6 @@ export const ExploreCard = ({
           />
         </div>
       </article>
-    </li>
+    </Link>
   );
 };

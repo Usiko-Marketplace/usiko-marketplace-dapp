@@ -1,5 +1,6 @@
 import RenderNFTS from "@/components/main/markets/nfts/renderNFTS";
 import {
+  AboutArts,
   DailyChange,
   SocialShare,
   Star,
@@ -7,9 +8,10 @@ import {
 import Field from "@/components/ui/field";
 import { UserAvatar } from "@/components/ui/UserAvatar";
 import { DateIcon, StackIcon } from "@/public/svgs";
+import { ArtCollection } from "@/types/martkes";
 import { artsData } from "@/utils/constant";
 import { formatNumbers } from "@/utils/helper";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 export async function generateMetadata({
   searchParams,
@@ -32,33 +34,33 @@ export default async function page({
   params: Promise<{ artId: string }>;
 }) {
   const { artId } = await params;
-  const matched = artsData?.find((item) => item?.id === artId);
+  const matched = artsData?.find((item) => item?.id === artId) as ArtCollection;
 
   return (
     <main className="overflow-x-hidden bg-black pt-[var(--main-header-height)]">
       <section className="art artHero relative flex min-h-[500px] flex-col justify-end">
         <figure className="absolute inset-0 left-0 z-0 h-[500px]">
           <Image
-            src={matched?.artwork!}
-            alt={matched?.artworkName!}
+            src={matched?.artwork}
+            alt={matched?.artworkName}
             className="!size-full object-cover"
           />
         </figure>
         <section className="relative z-10 container flex flex-wrap justify-between gap-4">
           <article className="flex w-full items-start justify-between lg:w-5/12">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col !gap-4">
               <UserAvatar
-                url={matched?.authorAvarta!}
-                displayName={matched?.artworkName!}
+                url={matched?.authorAvarta as StaticImageData}
+                displayName={matched?.artworkName}
                 subtext={
                   <small className="text-gray-30">{matched?.authorName}</small>
                 }
                 showTitle
               />
               <ul className="text-gray-30 flex flex-wrap items-center gap-2 divide-x divide-gray-100">
-                <li className="flex items-center gap-1 pr-4">About</li>
+                <AboutArts data={matched} />
                 <li className="flex items-center gap-1 pr-4">
-                  <Star id={matched?.id!} /> <span> Add to watchlist</span>
+                  <Star id={matched?.id} /> <span> Add to watchlist</span>
                 </li>
                 <li className="flex items-center gap-1 pr-4">
                   <StackIcon /> <span> 3 items</span>{" "}
@@ -84,7 +86,7 @@ export default async function page({
                 title="1D volume change"
                 value={
                   <DailyChange
-                    volume={matched?.oneDayvolumeChange!}
+                    volume={matched?.oneDayvolumeChange}
                     className="!text-base font-semibold"
                   />
                 }
@@ -110,7 +112,7 @@ export default async function page({
             <li>
               <Field
                 title="Owners"
-                value={`${formatNumbers(matched?.owners!)}  `}
+                value={`${formatNumbers(matched?.owners)}  `}
                 className="flex-col items-start !gap-1"
                 valuClassName="!text-base font-semibold"
               />
