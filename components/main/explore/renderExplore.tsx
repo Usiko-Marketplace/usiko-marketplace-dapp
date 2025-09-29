@@ -5,28 +5,18 @@ import { formatNumbers } from "@/utils/helper";
 import Image from "next/image";
 import React from "react";
 import Field from "@/components/ui/field";
-import { artsData } from "@/utils/constant";
 import { DailyChange, Star } from "../markets/table/tableComps";
 import Link from "next/link";
 
-export const RenderExplore = () => {
+export const RenderExplore = ({
+  collections,
+}: {
+  collections: ArtCollection[];
+}) => {
   return (
-    <section className="container !space-y-10 py-20">
-      <hgroup
-        data-aos="fade-down"
-        data-aos-duration="1500"
-        className="!space-y-3 text-center"
-      >
-        <h3>Explore our Exclusive Collections</h3>
-        <h5>Top curated collections of Africa’s culture</h5>
-      </hgroup>
-
-      <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-        {artsData.map((item) => (
-          <ExploreCard key={item?.id} data={item} />
-        ))}
-      </ul>
-    </section>
+    <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      {collections?.map((item) => <ExploreCard key={item?.id} data={item} />)}
+    </ul>
   );
 };
 

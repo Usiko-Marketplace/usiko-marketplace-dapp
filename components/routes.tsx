@@ -12,10 +12,10 @@ export const navRoutes = [
     name: "Community",
     path: "#",
   },
-  {
-    name: "Mint NFT",
-    path: "#",
-  },
+  // {
+  //   name: "Mint NFT",
+  //   path: "#",
+  // },
 ];
 
 export const productRoutes = [
@@ -36,10 +36,10 @@ export const productRoutes = [
     name: "Community",
     path: "#",
   },
-  {
-    name: "Mint NFT",
-    path: "#",
-  },
+  // {
+  //   name: "Mint NFT",
+  //   path: "#",
+  // },
 ];
 
 export const socialsRoutes = [

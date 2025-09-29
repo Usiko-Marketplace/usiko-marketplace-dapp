@@ -54,7 +54,7 @@ export default function NavbarLink({
           {icon} {name}{" "}
           {name === "Live Auctions" ? (
             <span className="bg-success-25 text-success-50 rounded-full px-3 py-1 !text-xs">
-              Coming soon
+              soon
             </span>
           ) : (
             ""
