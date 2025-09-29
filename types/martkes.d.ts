@@ -24,6 +24,7 @@ export type NFT = {
 // Art Collection Type
 export type ArtCollection = {
   id: string;
+  initials: string;
   authorName: string;
   authorAvarta: StaticImageData | null;
   supply: number;

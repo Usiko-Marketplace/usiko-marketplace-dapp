@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .container {
-  @apply mx-auto w-[97%] max-w-[100rem] lg:w-[95%];
+  @apply mx-auto w-[96%] max-w-[100rem] lg:w-[93%];
 }
 
 :root {
@@ -177,10 +177,20 @@ small {
   mask-image: linear-gradient(to top, black 38%, transparent 40%);
 }
 
+.errors {
+  border: solid var(--color-error) 1px !important;
+}
+
+.error_message {
+  color: var(--color-error);
+  font-weight: 300;
+  font-size: 14px;
+}
+
 /* ====Btns==== */
 
 .btn {
-  min-height: 40px;
+  min-height: 47px;
   padding: 8px 23px;
   font-size: 1rem;
   font-weight: 600;
@@ -208,7 +218,7 @@ small {
 }
 
 .outline-btn {
-  border: solid 1px var(--color-grey-25);
+  border: solid 1px #3c3c44;
   color: var(--color-primary);
 }
 
@@ -279,18 +289,30 @@ label {
 .form-controls {
   display: block;
   width: 100%;
-  min-height: 44px;
+  min-height: 40px;
   padding: 0.6rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--color-grey-900);
-  background-color: var(--color-white);
+  color: var(--color-white);
+  background-color: transparent;
   background-clip: padding-box;
-  border: 1px solid var(--color-grey-25);
+  border: 1px solid var(--color-gray-300);
   border-radius: 8px;
   transition:
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
+}
+
+input::placeholder {
+  color: #6a6a75;
+}
+
+textarea:focus,
+select:focus,
+input:focus {
+  border: solid 2.1px var(--color-primary);
+  outline: 0;
+  border-radius: auto;
 }
 
 .inputWrapper {

@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 type FileImageProps = {
   url: string | StaticImageData;
+  initials?: string;
   displayName: string;
   className?: string;
   titleClassName?: string;
@@ -13,6 +14,7 @@ type FileImageProps = {
 export const UserAvatar = ({
   url,
   displayName,
+  initials,
   subtext,
   titleClassName,
   className,
@@ -35,7 +37,7 @@ export const UserAvatar = ({
           className={`text-primary grid size-12 place-items-center rounded-full bg-white`}
         >
           <span className={`text-base font-bold uppercase`}>
-            {displayName?.slice(0, 2) || ""}
+            {initials ? initials : displayName?.slice(0, 2) || ""}
           </span>
         </div>
       )}

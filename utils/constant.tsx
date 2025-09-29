@@ -12,6 +12,7 @@ import { ArtCollection } from "@/types/martkes";
 export const artsData: ArtCollection[] = [
   {
     id: "art-collect-00001",
+    initials: "DC",
     authorName: "DammyJ",
     authorAvarta: null,
     owners: 1200,
@@ -83,6 +84,7 @@ export const artsData: ArtCollection[] = [
   },
   {
     id: "art-collect-00002",
+    initials: "TH",
     authorName: "DammyJ",
     authorAvarta: allImages.avarta1,
     owners: 900,
@@ -154,6 +156,7 @@ export const artsData: ArtCollection[] = [
   },
   {
     id: "art-collect-00003",
+    initials: "IG",
     authorName: "DammyJ",
     authorAvarta: allImages.avarta2,
     owners: 500,
@@ -229,11 +232,12 @@ export const marketColData: Column<ArtCollection>[] = [
   {
     title: "COLLECTION",
     key: "authorName",
-    render: (_, { id, authorAvarta, artworkName }) => (
+    render: (_, { id, initials, artworkName }) => (
       <div className="flex items-center gap-6">
         <Star id={id} />
         <UserAvatar
-          url={authorAvarta ?? ""}
+          url={""}
+          initials={initials}
           displayName={artworkName}
           showTitle
         />

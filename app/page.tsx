@@ -30,12 +30,24 @@ export default async function Home({
           data-aos-duration="1500"
           className="mx-auto flex w-11/12 max-w-xs items-center justify-center gap-2 text-center"
         >
-          <Button className="alt-btn grow">Explore</Button>
+          <Button link href="/collections" className="alt-btn grow">
+            Explore
+          </Button>
           <Button className="pry-btn grow">Mint NFT</Button>
         </article>
       </section>
 
-      <RenderExplore />
+      <section className="container !space-y-10 py-20">
+        <hgroup
+          data-aos="fade-down"
+          data-aos-duration="1500"
+          className="!space-y-3 text-center"
+        >
+          <h3>Explore our Exclusive Collections</h3>
+          <h5>Top curated collections of Africa’s culture</h5>
+        </hgroup>
+        <RenderExplore collections={artsData} />
+      </section>
 
       <section className="container py-20">
         <hgroup
