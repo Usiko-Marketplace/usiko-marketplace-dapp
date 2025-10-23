@@ -112,7 +112,7 @@ export const AboutArts = ({ data }: { data: ArtCollection }) => {
 
             <p>{data?.about}</p>
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="mt-3 flex items-center justify-between gap-4">
               <PlayIcon />
               <AudioWaveIcon />
               <SpeakerIcon />
