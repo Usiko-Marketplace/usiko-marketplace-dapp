@@ -80,6 +80,23 @@ export const artsData: ArtCollection[] = [
         about:
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
+      {
+        id: "1027",
+        name: "The throne of King Ghezo of Dahomey",
+        floor: 15.99,
+        list: 14.75,
+        sale: 22.1,
+        artwork: allImages.danNFT4,
+        details: {
+          contractAddress: "0x93R...65G",
+          tokenID: "23715",
+          tokenStandard: "HBAR",
+          chain: "Hedera",
+        },
+        priceHistory: [1.2, 13, 5, 26, 12],
+        about:
+          "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
+      },
     ],
   },
   {
@@ -152,6 +169,23 @@ export const artsData: ArtCollection[] = [
         about:
           "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
       },
+      {
+        id: "1027",
+        name: "Queen Nandi-(The Sweet one)",
+        floor: 15.99,
+        list: 14.75,
+        sale: 28.5,
+        artwork: allImages.theHornsNFT4,
+        details: {
+          contractAddress: "0x93R...65G",
+          tokenID: "23715",
+          tokenStandard: "HBAR",
+          chain: "Hedera",
+        },
+        priceHistory: [1.2, 13, 5, 26, 12],
+        about:
+          "Portrait PFPs honoring the famed women soldiers through bold appliqué textures, scarification motifs, brasswork, and cowries. Swear on-chain oaths, rank up through weekly “training,” and earn insignia that stitch into your identity, both digitally and as IRL patches. Your shield isn’t just art; it’s a discipline.",
+      },
     ],
   },
   {
@@ -179,7 +213,7 @@ export const artsData: ArtCollection[] = [
         floor: 24.12,
         list: 22.1,
         sale: 22.1,
-        artwork: null,
+        artwork: allImages.igunNFT1,
         details: {
           contractAddress: "0x93R...65G",
           tokenID: "23715",
@@ -196,7 +230,7 @@ export const artsData: ArtCollection[] = [
         floor: 30.75,
         list: 28.5,
         sale: 28.5,
-        artwork: null,
+        artwork: allImages.igunNFT2,
         details: {
           contractAddress: "0x93R...65G",
           tokenID: "23715",
@@ -213,7 +247,7 @@ export const artsData: ArtCollection[] = [
         floor: 15.99,
         list: 14.75,
         sale: 14.75,
-        artwork: null,
+        artwork: allImages.igunNFT3,
         details: {
           contractAddress: "0x93R...65G",
           tokenID: "23715",
