@@ -2,6 +2,10 @@ import metaMask from "@/public/images/metaMask.png";
 import danNFT1 from "@/public/images/danNFT1.jpg";
 import danNFT2 from "@/public/images/danNFT2.jpg";
 import danNFT3 from "@/public/images/danNFT3.jpg";
+import danNFT4 from "@/public/images/danNFT4.jpg";
+import igunNFT1 from "@/public/images/igunNFT1.jpg";
+import igunNFT2 from "@/public/images/igunNFT2.jpg";
+import igunNFT3 from "@/public/images/igunNFT3.jpg";
 import getPaid from "@/public/images/getPaid.png";
 import heroBg from "@/public/images/heroBg.png";
 import learn1 from "@/public/images/learn1.png";
@@ -16,6 +20,7 @@ import product3 from "@/public/images/product3.png";
 import theHornsNFT1 from "@/public/images/theHornsNFT1.jpg";
 import theHornsNFT2 from "@/public/images/theHornsNFT2.jpg";
 import theHornsNFT3 from "@/public/images/theHornsNFT3.jpg";
+import theHornsNFT4 from "@/public/images/theHornsNFT4.jpg";
 import avarta1 from "@/public/images/authorAvatar.png";
 import avarta2 from "@/public/images/authorAvatar1.png";
 import notfound from "@/public/images/notfound.png";
@@ -28,6 +33,10 @@ export const allImages = {
   danNFT1,
   danNFT2,
   danNFT3,
+  danNFT4,
+  igunNFT1,
+  igunNFT2,
+  igunNFT3,
   getPaid,
   heroBg,
   learn1,
@@ -42,4 +51,5 @@ export const allImages = {
   theHornsNFT1,
   theHornsNFT2,
   theHornsNFT3,
+  theHornsNFT4,
 };

@@ -5,7 +5,16 @@ import ModalWrapper from "@/components/ui/modals/ModalWrapper";
 import { UserAvatar } from "@/components/ui/UserAvatar";
 import { useMarketContext } from "@/context/marketContext";
 import { useModalContext } from "@/context/modalContext";
-import { InfoIcon, ShareIcon, StarsIcon, WebIcon, XIcon } from "@/public/svgs";
+import {
+  AudioWaveIcon,
+  InfoIcon,
+  PlayIcon,
+  ShareIcon,
+  SpeakerIcon,
+  StarsIcon,
+  WebIcon,
+  XIcon,
+} from "@/public/svgs";
 import { ArtCollection, NFT } from "@/types/martkes";
 import { StaticImageData } from "next/image";
 import React, { useState } from "react";
@@ -102,6 +111,12 @@ export const AboutArts = ({ data }: { data: ArtCollection }) => {
             />
 
             <p>{data?.about}</p>
+
+            <div className="mt-3 flex items-center justify-between gap-4">
+              <PlayIcon />
+              <AudioWaveIcon />
+              <SpeakerIcon />
+            </div>
           </article>
         </ModalWrapper>
       )}
