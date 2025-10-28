@@ -2,7 +2,6 @@ import {
   RenderNFTDetails,
   SocialShare,
 } from "@/components/main/markets/table/tableComps";
-import Button from "@/components/ui/button";
 import EmptyState from "@/components/ui/emptyStates";
 import Field from "@/components/ui/field";
 import { UserAvatar } from "@/components/ui/UserAvatar";
@@ -91,8 +90,6 @@ export default async function page({
               className="flex-col items-start !gap-1"
               valuClassName="text-2xl lg:text-[32px] font-semibold"
             />
-
-            <Button className="pry-btn">Connect wallet</Button>
           </article>
 
           <ul className="flex justify-between rounded-2xl border border-[#323238] !p-5">
