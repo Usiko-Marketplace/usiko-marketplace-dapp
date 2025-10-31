@@ -364,6 +364,12 @@ export const MintNFTAction = () => {
   const { isConnected } = useAccount();
 
   return (
-    <>{isConnected && <Button className="pry-btn grow">Mint NFT</Button>}</>
+    <>
+      {isConnected && (
+        <Button link href="/collections" className="pry-btn grow">
+          Mint NFT
+        </Button>
+      )}
+    </>
   );
 };

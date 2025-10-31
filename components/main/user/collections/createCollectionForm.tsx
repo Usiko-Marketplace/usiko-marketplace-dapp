@@ -1,16 +1,23 @@
 "use client";
 
-import React from "react";
+import React, {
+  ChangeEvent,
+  DragEvent,
+  FormEvent,
+  useRef,
+  useState,
+} from "react";
 import Button from "@/components/ui/button";
 import FormInput from "@/components/ui/formInput";
 import { CloudUploadIcon } from "@/public/svgs";
-import { useModalContext } from "@/context/modalContext";
 import { CollectionSuccessModal } from "./collectionSuccessModal";
 import Image from "next/image";
+import { useCollectionsContext } from "@/context/collectionContext";
 
 type Props = {
   onCancel?: () => void;
   onPublish?: (data: FormData) => void;
+  details?: boolean;
 };
 
 const categories = [
@@ -24,15 +31,22 @@ const categories = [
   "Virtual Worlds",
 ];
 
-export default function CreateCollectionForm({ onCancel }: Props) {
-  const { openModal } = useModalContext();
-  const [imageFile, setImageFile] = React.useState<File | null>(null);
-  const [imagePreview, setImagePreview] = React.useState<string | null>(null);
-  const [category, setCategory] = React.useState<string>("");
+export default function CreateCollectionForm({ onCancel, details }: Props) {
+  const {
+    collectionFormData,
+    setCollectionFormData,
+    handleCollectionChange,
+    handleSubmitCollections,
+    isLoading,
+  } = useCollectionsContext();
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(
+    collectionFormData?.collectionImage,
+  );
 
-  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const file = e.dataTransfer.files?.[0];
@@ -44,11 +58,17 @@ export default function CreateCollectionForm({ onCancel }: Props) {
   const handleFile = (file: File) => {
     setImageFile(file);
     const reader = new FileReader();
-    reader.onload = () => setImagePreview(String(reader.result));
+    reader.onload = () => {
+      setImagePreview(String(reader.result));
+      setCollectionFormData((prev) => ({
+        ...prev,
+        ["collectionImage"]: String(reader.result),
+      }));
+    };
     reader.readAsDataURL(file);
   };
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) handleFile(file);
   };
@@ -63,59 +83,64 @@ export default function CreateCollectionForm({ onCancel }: Props) {
     } catch {}
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(imageFile);
-    openModal("create-success");
+    // openModal("create-success");
+    handleSubmitCollections();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Collection image */}
-        <article
-          onDragOver={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onDrop={onDrop}
-          className="rounded-lg border border-dashed border-gray-300 p-4"
-        >
-          <div
-            className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md py-8"
-            onClick={() => fileInputRef.current?.click()}
-            role="button"
-            aria-label="Upload collection image"
+        {!details && (
+          <article
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onDrop={onDrop}
+            className="rounded-lg border border-dashed border-gray-300 p-4"
           >
-            {imagePreview ? (
-              <Image
-                src={imagePreview}
-                alt="Collection preview"
-                className="h-40 w-40 rounded-md object-cover"
-              />
-            ) : (
-              <>
-                <CloudUploadIcon />
-                <p className="text-gray-30 text-sm">
-                  <span className="text-primary"> Click to upload</span> or drag
-                  and drop
-                </p>
-                <p className="text-gray-40 text-xs">
-                  1000 × 1000, GIF, JPG, PNG, SVG, max 25MB
-                </p>
-              </>
-            )}
-          </div>
+            <div
+              className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md py-8"
+              onClick={() => fileInputRef.current?.click()}
+              role="button"
+              aria-label="Upload collection image"
+            >
+              {imagePreview ? (
+                <Image
+                  src={imagePreview}
+                  alt="Collection preview"
+                  className="rounded-md object-cover"
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                <>
+                  <CloudUploadIcon />
+                  <p className="text-gray-30 text-sm">
+                    <span className="text-primary"> Click to upload</span> or
+                    drag and drop
+                  </p>
+                  <p className="text-gray-40 text-xs">
+                    1000 × 1000, GIF, JPG, PNG, SVG, max 25MB
+                  </p>
+                </>
+              )}
+            </div>
 
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={onFileChange}
-            name="image"
-          />
-        </article>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={onFileChange}
+              name="image"
+            />
+          </article>
+        )}
 
         <article className="space-y-2">
           <FormInput
@@ -123,6 +148,8 @@ export default function CreateCollectionForm({ onCancel }: Props) {
             name="name"
             label="Name"
             placeholder="Add Collection Name"
+            value={collectionFormData?.name}
+            onChange={handleCollectionChange}
             required
           />
           <small className="text-gray-40">
@@ -131,11 +158,13 @@ export default function CreateCollectionForm({ onCancel }: Props) {
         </article>
 
         <FormInput
-          id="symbol"
-          name="symbol"
+          id="tokenSymbol"
+          name="tokenSymbol"
           label="Token symbol"
-          required
           placeholder="Add Collection Name"
+          value={collectionFormData?.tokenSymbol}
+          onChange={handleCollectionChange}
+          required
         />
 
         <FormInput
@@ -144,6 +173,8 @@ export default function CreateCollectionForm({ onCancel }: Props) {
           label="Description"
           type="textarea"
           placeholder="Short description of your collection"
+          value={collectionFormData?.description}
+          onChange={handleCollectionChange}
         />
 
         <FormInput
@@ -152,18 +183,20 @@ export default function CreateCollectionForm({ onCancel }: Props) {
           label="Category"
           type="select"
           placeholder="Select category"
-          value={category}
           selectOptions={categories}
-          onChange={(v) => setCategory(v)}
+          value={collectionFormData?.category}
+          onChange={handleCollectionChange}
           className="w-full"
         />
 
         <FormInput
-          id="website"
-          name="website"
+          id="websiteURL"
+          name="websiteURL"
           label="Website URL (optional)"
           type="url"
           placeholder="Paste your URL"
+          value={collectionFormData?.websiteURL}
+          onChange={handleCollectionChange}
         />
 
         {/* Creator fee and recipient */}
@@ -179,6 +212,8 @@ export default function CreateCollectionForm({ onCancel }: Props) {
             step="0.1"
             placeholder="0"
             className="relative"
+            value={collectionFormData?.creatorFee}
+            onChange={handleCollectionChange}
             required
           />
           <span className="text-gray-30 pointer-events-none absolute top-[65%] right-3 -translate-y-1/2">
@@ -187,13 +222,17 @@ export default function CreateCollectionForm({ onCancel }: Props) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="creatorRecipient">Creator fee recipient</label>
+          <label htmlFor="recipientWalletAddress">
+            Recipient wallet address
+          </label>
           <div className="form-controls mt-2 !flex items-center gap-2">
             <input
-              id="creatorRecipient"
-              name="creatorRecipient"
+              id="recipientWalletAddress"
+              name="recipientWalletAddress"
               placeholder="Paste your recipient address"
               className="flex-1 !bg-transparent text-white focus:!border-0 focus:!outline-0"
+              value={collectionFormData?.recipientWalletAddress}
+              onChange={handleCollectionChange}
               required
             />
             <button
@@ -207,18 +246,30 @@ export default function CreateCollectionForm({ onCancel }: Props) {
         </div>
 
         {/* Actions */}
-        <div className="mt-8 flex items-center justify-between gap-3">
-          <Button
-            type="button"
-            className="outline-btn w-full"
-            onClick={onCancel}
-          >
-            Cancel
-          </Button>
-          <Button type="submit" className="pry-btn w-full">
-            Publish Collection
-          </Button>
-        </div>
+        {details ? (
+          <div className="mt-8 flex items-center justify-end gap-3">
+            <Button type="submit" className="pry-btn" loading={isLoading}>
+              Publish changes
+            </Button>
+          </div>
+        ) : (
+          <div className="mt-8 flex items-center justify-between gap-3">
+            <Button
+              type="button"
+              className="outline-btn w-full"
+              onClick={onCancel}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="pry-btn w-full"
+              loading={isLoading}
+            >
+              Publish Collection
+            </Button>
+          </div>
+        )}
       </form>
 
       <CollectionSuccessModal />

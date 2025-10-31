@@ -31,7 +31,7 @@ export default async function Home({
           data-aos-duration="1500"
           className="mx-auto flex w-11/12 max-w-xs items-center justify-center gap-2 text-center"
         >
-          <Button link href="/collections" className="alt-btn grow">
+          <Button link href="/markets" className="alt-btn grow">
             Explore
           </Button>
           <MintNFTAction />
