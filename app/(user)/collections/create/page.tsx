@@ -10,7 +10,7 @@ export default function page() {
           data-aos-duration="1500"
           className="!space-y-3 text-center"
         >
-          <h3>My Collections</h3>
+          <h3>Create your Collection</h3>
         </hgroup>
 
         <CreateCollectionForm />
