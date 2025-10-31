@@ -32,3 +32,14 @@ export const formatNumbers = (val: number) => {
 export const removeSpaces = (str: string) => {
   return str.replace(/\s+/g, "-").replace(/\//g, "and");
 };
+
+export function shortenAddress(address: string) {
+  if (address.length < 10) {
+    // If the address is too short to be shortened, return it as is
+    return address;
+  }
+
+  const start = address.slice(0, 4);
+  const end = address.slice(-4);
+  return `${start}.....${end}`;
+}

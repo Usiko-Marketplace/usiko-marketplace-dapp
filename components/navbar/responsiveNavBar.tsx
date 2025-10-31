@@ -40,7 +40,7 @@ const ResponsiveNavBar = ({
           </ul>
 
           <div className="flex w-full items-center justify-start gap-3 gap-y-6 px-4 lg:w-fit lg:justify-end lg:px-0">
-            <ConnectWallet connected={false} />
+            <ConnectWallet />
           </div>
         </article>
       </section>
