@@ -12,7 +12,6 @@ export const ConnectWallet = () => {
   const { openConnectModal } = useConnectModal();
   return (
     <div className="flex items-center gap-4">
-      <Rate />
       {isConnected && address ? (
         <article className="card flex items-center gap-2 p-3">
           <div className="flex items-center gap-2">
@@ -31,7 +30,7 @@ export const ConnectWallet = () => {
   );
 };
 
-const Rate = () => {
+export const Rate = () => {
   const rate = useExchangeRate();
   return (
     <div className="card !rounded-full px-3 py-1">

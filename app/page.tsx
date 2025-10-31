@@ -1,6 +1,7 @@
 import { RenderExplore } from "@/components/main/explore/renderExplore";
 import { LearningSlider } from "@/components/main/learningSlider";
 import RenderMarkets from "@/components/main/markets/renderMarkets";
+import { MintNFTAction } from "@/components/main/markets/table/tableComps";
 import Button from "@/components/ui/button";
 import { SearchParams } from "@/types/globals";
 import { artsData, learningHubData } from "@/utils/constant";
@@ -33,7 +34,7 @@ export default async function Home({
           <Button link href="/collections" className="alt-btn grow">
             Explore
           </Button>
-          <Button className="pry-btn grow">Mint NFT</Button>
+          <MintNFTAction />
         </article>
       </section>
 
