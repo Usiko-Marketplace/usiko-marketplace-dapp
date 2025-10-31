@@ -8,6 +8,8 @@ export type NFTDetails = {
   chain: string;
 };
 
+type AudioSource = string | { src: string };
+
 // Individual NFT Type
 export type NFT = {
   id: string;
@@ -19,6 +21,7 @@ export type NFT = {
   details: NFTDetails;
   priceHistory: number[];
   about: string;
+  aboutAudio: AudioSource;
 };
 
 // Art Collection Type
@@ -39,4 +42,5 @@ export type ArtCollection = {
   artworkName: string;
   priceHistory: number[];
   nfts: NFT[];
+  aboutAudio: AudioSource;
 };

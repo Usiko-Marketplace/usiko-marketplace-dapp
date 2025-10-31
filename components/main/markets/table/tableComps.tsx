@@ -1,5 +1,6 @@
 "use client";
 import { SparkLineChart } from "@/components/chart/sparklineChart";
+import Button from "@/components/ui/button";
 import Field from "@/components/ui/field";
 import ModalWrapper from "@/components/ui/modals/ModalWrapper";
 import { UserAvatar } from "@/components/ui/UserAvatar";
@@ -8,17 +9,20 @@ import { useModalContext } from "@/context/modalContext";
 import {
   AudioWaveIcon,
   InfoIcon,
+  PauseIcon,
   PlayIcon,
   ShareIcon,
   SpeakerIcon,
+  SpeakerOffIcon,
   StarsIcon,
   WebIcon,
   XIcon,
 } from "@/public/svgs";
-import { ArtCollection, NFT } from "@/types/martkes";
+import { ArtCollection, AudioSource, NFT } from "@/types/martkes";
 import { StaticImageData } from "next/image";
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import { useAccount } from "wagmi";
 
 export const MarketPrice = ({
   price,
@@ -110,13 +114,16 @@ export const AboutArts = ({ data }: { data: ArtCollection }) => {
               showTitle
             />
 
-            <p>{data?.about}</p>
+            <p className="leading-normal whitespace-break-spaces">
+              {data?.about}
+            </p>
 
-            <div className="mt-3 flex items-center justify-between gap-4">
+            {/* <div className="mt-3 flex items-center justify-between gap-4">
               <PlayIcon />
               <AudioWaveIcon />
               <SpeakerIcon />
-            </div>
+            </div> */}
+            <AboutAudio audio={data?.aboutAudio} startPlaying />
           </article>
         </ModalWrapper>
       )}
@@ -144,7 +151,10 @@ export const RenderNFTDetails = ({ data }: { data: NFT }) => {
     case "about":
       activeContents = (
         <div className="!mt-5">
-          <p>{data?.about}</p>
+          <p className="leading-normal whitespace-break-spaces">
+            {data?.about}
+          </p>
+          <AboutAudio audio={data?.aboutAudio} startPlaying />
         </div>
       );
       break;
@@ -204,5 +214,156 @@ export const RenderNFTDetails = ({ data }: { data: NFT }) => {
 
       {activeContents}
     </article>
+  );
+};
+
+export const AboutAudio = ({
+  audio,
+  startPlaying = false,
+}: {
+  startPlaying: boolean;
+  audio: AudioSource;
+}) => {
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = React.useState(startPlaying);
+  const [isMuted, setIsMuted] = React.useState(false);
+  const [duration, setDuration] = React.useState(0);
+  const [currentTime, setCurrentTime] = React.useState(0);
+
+  const src = React.useMemo(() => {
+    if (!audio) {
+      return "/audio/Daxome%20Codex-The%20Heritage%20of%20Dahomey.wav";
+    }
+    if (typeof audio === "string") return audio;
+    if (audio?.src) return audio.src;
+    return "/audio/Daxome%20Codex-The%20Heritage%20of%20Dahomey.wav";
+  }, [audio]);
+
+  const togglePlay = React.useCallback(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (el.paused) {
+      el.play();
+    } else {
+      el.pause();
+    }
+  }, []);
+
+  const toggleMute = React.useCallback(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    el.muted = !el.muted;
+    setIsMuted(el.muted);
+  }, []);
+
+  React.useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    const onTime = () => setCurrentTime(el.currentTime || 0);
+    const onLoaded = () => setDuration(el.duration || 0);
+    const onEnded = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+    };
+
+    el.addEventListener("play", onPlay);
+    el.addEventListener("pause", onPause);
+    el.addEventListener("timeupdate", onTime);
+    el.addEventListener("loadedmetadata", onLoaded);
+    el.addEventListener("ended", onEnded);
+
+    return () => {
+      el.removeEventListener("play", onPlay);
+      el.removeEventListener("pause", onPause);
+      el.removeEventListener("timeupdate", onTime);
+      el.removeEventListener("loadedmetadata", onLoaded);
+      el.removeEventListener("ended", onEnded);
+    };
+  }, []);
+
+  // Auto-play on mount or when src changes, if requested
+  React.useEffect(() => {
+    const el = audioRef.current;
+    if (!el || !startPlaying) return;
+
+    const attemptPlay = () => {
+      el.play().catch(() => {
+        // Autoplay might be blocked; try muted autoplay
+        el.muted = true;
+        setIsMuted(true);
+        el.play().catch(() => {});
+      });
+    };
+
+    if (el.readyState >= 2) {
+      attemptPlay();
+    } else {
+      const onReady = () => attemptPlay();
+      el.addEventListener("loadedmetadata", onReady, { once: true } as any);
+      el.addEventListener("canplay", onReady, { once: true } as any);
+      return () => {
+        el.removeEventListener("loadedmetadata", onReady as any);
+        el.removeEventListener("canplay", onReady as any);
+      };
+    }
+  }, [startPlaying, src]);
+
+  const progressPct = React.useMemo(() => {
+    if (!duration || !currentTime) return 0;
+    const pct = (currentTime / duration) * 100;
+    return Math.max(0, Math.min(100, pct));
+  }, [currentTime, duration]);
+
+  return (
+    <div className="mt-10 flex items-center justify-between gap-4">
+      <button
+        onClick={togglePlay}
+        aria-pressed={isPlaying}
+        aria-label={isPlaying ? "Pause" : "Play"}
+      >
+        {isPlaying ? <PauseIcon /> : <PlayIcon />}
+      </button>
+
+      <div className="relative h-[50px] flex-1">
+        {/* Background wave */}
+        <div className="pointer-events-none absolute inset-0 opacity-30">
+          <AudioWaveIcon aria-hidden />
+        </div>
+
+        {/* Progress wave — full width, masked by progress */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            WebkitMaskImage: `linear-gradient(to right, #000 ${progressPct}%, rgba(0,0,0,0) ${progressPct}%)`,
+            maskImage: `linear-gradient(to right, #000 ${progressPct}%, rgba(0,0,0,0) ${progressPct}%)`,
+            transition:
+              "mask-image 150ms linear, -webkit-mask-image 150ms linear",
+          }}
+        >
+          <AudioWaveIcon aria-hidden />
+        </div>
+      </div>
+
+      <button
+        onClick={toggleMute}
+        aria-pressed={isMuted}
+        aria-label={isMuted ? "Unmute" : "Mute"}
+      >
+        {isMuted ? <SpeakerOffIcon /> : <SpeakerIcon />}
+      </button>
+
+      <audio ref={audioRef} src={src} preload="metadata" />
+    </div>
+  );
+};
+
+export const MintNFTAction = () => {
+  const { isConnected } = useAccount();
+
+  return (
+    <>{isConnected && <Button className="pry-btn grow">Mint NFT</Button>}</>
   );
 };
